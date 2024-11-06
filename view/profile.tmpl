@@ -1,11 +1,10 @@
 {{ template "layout" . }}
 
-{{ define "title" }}{{ .ProfileUser.PlayerName }}'s Profile - {{ .App.Config.ApplicationName }}{{ end }}
+{{ define "title" }}Profil {{ .ProfileUser.PlayerName }} - {{ .App.Config.ApplicationName }}{{ end }}
 
 {{ define "content" }}
 
   {{ template "header" . }}
-
 
   <h2 style="text-align: center;">{{ .ProfileUser.PlayerName }}</h2>
   {{/* prettier-ignore-start */}}
@@ -16,7 +15,7 @@
       <canvas id="skin-canvas"></canvas>
     </div>
   {{ else }}
-    No skin yet.
+    Brak skórki.
   {{ end }}
   <form
     action="{{ .App.FrontEndURL }}/web/update"
@@ -25,9 +24,7 @@
   >
     {{ if or .App.Config.AllowChangingPlayerName .User.IsAdmin }}
       <p>
-        <label for="player-name"
-          >Player Name (can be different from username)</label
-        ><br />
+        <label for="player-name">Nazwa gracza (może różnić się od nazwy użytkownika)</label><br />
         <input
           type="text"
           name="playerName"
@@ -37,17 +34,17 @@
       </p>
     {{ end }}
     <p>
-      <label for="password">Password</label><br />
+      <label for="password">Hasło</label><br />
       <input
         type="password"
         name="password"
         id="password"
         class="long"
-        placeholder="Leave blank to keep"
+        placeholder="Pozostaw puste, aby nie zmieniać"
       />
     </p>
     <p>
-      <label for="apiToken">API Token</label><br />
+      <label for="apiToken">Token API</label><br />
       <input
         type="text"
         name="apiToken"
@@ -57,15 +54,11 @@
         value="{{ .ProfileUser.APIToken }}"
       />
       <br />
-      <label for="reset-api-token"
-        >check the box to reset your API token
-      </label>
+      <label for="reset-api-token">zaznacz, aby zresetować token API</label>
       <input type="checkbox" name="resetApiToken" id="reset-api-token" />
     </p>
     <p>
-      <label for="preferred-language"
-        >Preferred Language (used by Minecraft)</label
-      ><br />
+      <label for="preferred-language">Preferowany język (używany przez Minecraft)</label><br />
       <select
         name="preferredLanguage"
         id="preferred-language"

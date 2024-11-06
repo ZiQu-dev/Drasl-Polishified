@@ -5,26 +5,26 @@
         <a class="logo" href="{{ .App.FrontEndURL }}">
           <img
             src="{{ .App.FrontEndURL }}/web/public/logo.svg"
-            alt="{{ .App.Config.ApplicationName }} logo"
+            alt="Logo {{ .App.Config.ApplicationName }}"
           />{{ .App.Config.ApplicationName }}
         </a>
       </h1>
     </div>
     <div style="text-align: right">
-      <a href="{{ .App.FrontEndURL }}/web/registration">Register</a>
+      <a href="{{ .App.FrontEndURL }}/web/registration">Zarejestruj się</a>
       {{ if .User }}
         {{ if .User.IsAdmin }}
           <a href="{{ .App.FrontEndURL }}/web/admin">Admin</a>
         {{ end }}
         <a href="{{ .App.FrontEndURL }}/web/profile"
-          >{{ .User.Username }}'s&nbsp;Profile</a
+          >Profil użytkownika: {{ .User.Username }}</a
         >
         <form
           style="display: inline"
           action="{{ .App.FrontEndURL }}/web/logout"
           method="post"
         >
-          <input type="submit" value="Log Out" />
+          <input type="submit" value="Wyloguj się" />
         </form>
       {{ end }}
     </div>

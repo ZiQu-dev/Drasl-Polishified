@@ -4,40 +4,39 @@
 
 {{ define "content" }}
   {{ template "header" . }}
-  <h3>Log in</h3>
+  <h3>Logowanie</h3>
   <form action="{{ .App.FrontEndURL }}/web/login" method="post">
-    <input type="text" name="username" placeholder="Username" required />
+    <input type="text" name="username" placeholder="Nazwa użytkownika" required />
     <input
       class="long"
       type="password"
       name="password"
-      placeholder="Password"
+      placeholder="Hasło"
       required
     />
-    <input type="submit" value="Log in" />
+    <input type="submit" value="Zaloguj się" />
   </form>
 
-  <h3>Configuring your client</h3>
+  <h3>Konfiguracja klienta</h3>
   <p>
-    Using {{ .App.Config.ApplicationName }} on the client requires a third-party launcher that supports
-    custom API servers.
-    <a href="https://github.com/unmojang/FjordLauncher">Fjord Launcher</a>, a
-    fork of Prism Launcher, is recommended, but
-    <a href="https://github.com/huanghongxun/HMCL">HMCL</a> also works. Both are
-    free/libre.
+    Aby używać {{ .App.Config.ApplicationName }} w kliencie, potrzebujesz zewnętrznego launchera, który obsługuje
+    niestandardowe serwery API. Polecamy
+    <a href="https://github.com/ZiQu-dev/FjordLauncherPatched"></a>, forka FjordLaunchera, tylko spatchowanego dla rozgrywki Offline,
+    <a href="https://github.com/unmojang/FjordLauncher">Fjord Launcher</a>, forka Prism Launcher'a, ale
+    <a href="https://github.com/huanghongxun/HMCL">HMCL</a> również działa. Oba są darmowe i otwarto źródłowe.
   </p>
 
   <h4>Fjord Launcher</h4>
 
   <ol>
     <li>
-      Click your account in the top right and select "Manage Accounts...".
+      Kliknij swoje konto w prawym górnym rogu i wybierz "Zarządzaj kontami...".
     </li>
-    <li>Click "Add authlib-injector" in the right-hand sidebar.</li>
+    <li>Kliknij "Dodaj authlib-injector" w prawym pasku bocznym.</li>
     <li>
-      Enter your username and password, and use
+      Wpisz swoją nazwę użytkownika i hasło, a następnie użyj
       <a href="{{ .App.AuthlibInjectorURL }}">{{ .App.AuthlibInjectorURL }}</a>
-      for the URL. Click "OK".
+      jako URL. Kliknij "OK".
     </li>
   </ol>
 
@@ -45,59 +44,57 @@
 
   <ol>
     <li>
-      Go to the "Account List" view by clicking the account at the top of the
-      sidebar.
+      Przejdź do widoku "Lista kont", klikając konto na górze paska bocznego.
     </li>
     <li>
-      At the bottom left, click "New Auth Server" and enter
+      Na dole po lewej kliknij "Nowy serwer uwierzytelniania" i wpisz
       <a href="{{ .App.AuthlibInjectorURL }}">{{ .App.AuthlibInjectorURL }}</a>.
-      Click "Next" and then "Finish".
+      Kliknij "Dalej", a następnie "Zakończ".
     </li>
     <li>
-      In the sidebar, click the newly-added authentication server, labeled
-      "{{ .App.Config.InstanceName }}". Enter your {{ .App.Config.ApplicationName }} username and password
-      and click "Login".
+      Na pasku bocznym kliknij nowo dodany serwer uwierzytelniania, oznaczony
+      jako "{{ .App.Config.InstanceName }}". Wpisz swoją nazwę użytkownika i hasło
+      {{ .App.Config.ApplicationName }} i kliknij "Zaloguj".
     </li>
   </ol>
 
-  <h4>Other Launchers</h4>
+  <h4>Inne launchery</h4>
 
   <p>
-    Use the authlib-injector URL
+    Użyj URL authlib-injectora
     <a href="{{ .App.AuthlibInjectorURL }}">{{ .App.AuthlibInjectorURL }}</a>.
   </p>
 
   <p>
-    Or, if your launcher supports custom API servers but not via
-    authlib-injector, use the following URLs:
+    Lub, jeśli Twój launcher obsługuje niestandardowe serwery API, ale nie przez
+    authlib-injectora, użyj poniższych adresów URL:
   </p>
 
   <table>
     <tr>
-      <td>Authentication Server:</td>
+      <td>Serwer uwierzytelniania:</td>
       <td>{{ .App.AuthURL }}</td>
     </tr>
     <tr>
-      <td>Account Server:</td>
+      <td>Serwer kont:</td>
       <td>{{ .App.AccountURL }}</td>
     </tr>
     <tr>
-      <td>Session Server:</td>
+      <td>Serwer sesji:</td>
       <td>{{ .App.SessionURL }}</td>
     </tr>
     <tr>
-      <td>Services Server:</td>
+      <td>Serwer usług:</td>
       <td>{{ .App.ServicesURL }}</td>
     </tr>
   </table>
 
-  <h3>Configuring your server</h3>
+  <h3>Konfiguracja serwera</h3>
 
-  <h4>Minecraft 1.16 and later</h4>
+  <h4>Minecraft 1.16 i nowsze</h4>
 
-  On recent versions of Minecraft, you can use {{ .App.Config.ApplicationName }} on an unmodified Vanilla
-  server. To do so, add the following arguments before you specify the jar file
-  when you start the server:
+  W nowszych wersjach Minecrafta, możesz używać {{ .App.Config.ApplicationName }} na niezmodyfikowanym serwerze Vanilla.
+  Aby to zrobić, dodaj poniższe argumenty przed określeniem pliku JAR przy uruchamianiu serwera:
   <pre style="word-wrap: break-word; white-space: pre-wrap; overflow-x: auto">
 -Dminecraft.api.env=custom
 -Dminecraft.api.auth.host={{ .App.AuthURL }}
@@ -107,7 +104,7 @@
   </pre
   >
 
-  For example, the full command you use to start the server might be:
+  Na przykład pełne polecenie do uruchomienia serwera może wyglądać tak:
   <pre style="word-wrap: break-word; white-space: pre-wrap; overflow-x: auto">
 java -Xmx1024M -Xms1024M \
     -Dminecraft.api.env=custom \
@@ -118,10 +115,10 @@ java -Xmx1024M -Xms1024M \
     -jar server.jar nogui</pre
   >
 
-  <h4>Minecraft 1.15.2 and earlier</h4>
+  <h4>Minecraft 1.15.2 i starsze</h4>
 
   <p>
-    Refer to the authlib-injector documentation on setting up a server:
+    Zapoznaj się z dokumentacją authlib-injectora dotyczącą konfiguracji serwera:
     <a
       href="https://github.com/yushijinhun/authlib-injector/blob/develop/README.en.md#deploy"
       >https://github.com/yushijinhun/authlib-injector/blob/develop/README.en.md#deploy</a
@@ -129,12 +126,4 @@ java -Xmx1024M -Xms1024M \
   </p>
 
   <p>
-    Alternatively, you can patch your server to use a newer version of Mojang's
-    authlib that supports custom API servers. See
-    <a href="https://github.com/tinytengu/minecraft-authlib"
-      >https://github.com/tinytengu/minecraft-authlib</a
-    >.
-  </p>
-
-  {{ template "footer" . }}
-{{ end }}
+    Alternatywnie, możesz zmodyfikować swój serwer, aby używał nowszej wersji authlib Mojanga

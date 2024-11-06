@@ -6,7 +6,7 @@
   {{ template "header" . }}
 
 
-  <h4>Pending Invites</h4>
+  <h4>Oczekujące Zaproszenia</h4>
 
   <div style="text-align: right">
     <form
@@ -15,7 +15,7 @@
       method="post"
     >
       <input hidden name="returnUrl" value="{{ .URL }}" />
-      <input type="submit" value="+ New Invite" />
+      <input type="submit" value="+ Nowe Zaproszenie" />
     </form>
   </div>
   {{ if .Invites }}
@@ -23,7 +23,7 @@
       <thead>
         <tr>
           <td style="width: 50%">Link</td>
-          <td>Date Generated</td>
+          <td>Data Utworzenia</td>
           <td></td>
         </tr>
       </thead>
@@ -36,7 +36,7 @@
               >
             </td>
             <td>
-              {{ $invite.CreatedAt.Format "Mon Jan _2 15:04:05 MST 2006" }}
+              {{ $invite.CreatedAt.Format "Pon Jan _2 15:04:05 MST 2006" }}
             </td>
             <td>
               <form
@@ -50,7 +50,7 @@
                   value="{{ $invite.Code }}"
                   hidden
                 />
-                <input type="submit" value="× Delete" />
+                <input type="submit" value="× Usuń" />
               </form>
             </td>
           </tr>
@@ -58,11 +58,11 @@
       </tbody>
     </table>
   {{ else }}
-    No invites to show.
+    Brak zaproszeń do wyświetlenia.
   {{ end }}
 
 
-  <h4>All Users</h4>
+  <h4>Wszyscy Użytkownicy</h4>
 
   <div style="display: none">
     {{ range $user := .Users }}
@@ -70,7 +70,7 @@
         id="delete-{{ $user.Username }}"
         action="{{ $.App.FrontEndURL }}/web/delete-user"
         method="post"
-        onsubmit="return confirm('Are you sure you want to delete the account “{{ $user.Username }}”? This action is irreversible.');"
+        onsubmit="return confirm('Czy na pewno chcesz usunąć konto „{{ $user.Username }}”? Ta operacja jest nieodwracalna.');"
       >
         <input hidden name="returnUrl" value="{{ $.URL }}" />
         <input type="text" name="username" value="{{ $user.Username }}" />
@@ -82,11 +82,11 @@
     <table>
       <thead>
         <tr>
-          <td colspan="2">Profile</td>
-          <td>Player Name</td>
-          <td>Admin</td>
-          <td>Locked</td>
-          <td>Delete Account</td>
+          <td colspan="2">Profil</td>
+          <td>Nazwa Gracza</td>
+          <td>Administrator</td>
+          <td>Zablokowane</td>
+          <td>Usuń Konto</td>
         </tr>
       </thead>
       <tbody>
@@ -108,7 +108,7 @@
             <td>
               <input
                 name="admin-{{ $user.Username }}"
-                title="Admin?"
+                title="Administrator?"
                 type="checkbox"
                 {{ if
                   $user.IsAdmin
@@ -126,7 +126,7 @@
             <td>
               <input
                 name="locked-{{ $user.Username }}"
-                title="Locked?"
+                title="Zablokowane?"
                 type="checkbox"
                 {{ if
                   $user.IsLocked
@@ -139,7 +139,7 @@
               <input
                 type="submit"
                 form="delete-{{ $user.Username }}"
-                value="× Delete"
+                value="× Usuń"
               />
             </td>
           </tr>
@@ -148,7 +148,7 @@
     </table>
     <p style="text-align: center">
       <input hidden name="returnUrl" value="{{ $.URL }}" />
-      <input type="submit" value="Save Changes" />
+      <input type="submit" value="Zapisz Zmiany" />
     </p>
   </form>
 
